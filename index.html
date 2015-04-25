@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Meet Dojo</title>
+    <meta charset="UTF-8">
+    <title>TEpredict</title>
 
-    <!-- configure Dojo -->
+    <!-- load Dijit theme -->
+    <link rel="stylesheet" href="dojoPackage/dijit/themes/soria/soria.css">
+
+    <!-- configure Dojo before loading -->
     <script>
         var dojoConfig = {
+            parseOnLoad: true,
+            isDebug: true,
             async: true,
             baseUrl: './dojoPackage',
             packages: [
                 'dojo',
                 'dijit',
                 'dojox',
-                '../myPackage'
+                '../uiPackage'
             ]
         };
     </script>
@@ -21,21 +26,20 @@
     <!-- load Dojo -->
     <script src="dojoPackage/dojo/dojo.js"></script>
 
+    <!-- wait until all dependencies loading -->
     <script>
         require([
-            'dojo/dom',
-            'dojo/dom-construct',
-            'myPackage/myModule',
+            'uiPackage/uiWidget',
+            "dojo/parser",
             'dojo/domReady!'
-        ], function (dom, domConstruct, myModule) {
-            myModule.setText('greeting1', 'Hello Dojo!');
-
-            domConstruct.place('<i> Dmitry!</i>', dom.byId('greeting2'));
-        });
+        ]);
     </script>
+
 </head>
-<body>
-    <h1 id="greeting1"></h1>
-    <h1 id="greeting2">Hello</h1>
+<body class="soria"
+      style="width:99vw; height:97vh;">
+
+    <div data-dojo-type="uiWidget"></div>
+
 </body>
 </html>

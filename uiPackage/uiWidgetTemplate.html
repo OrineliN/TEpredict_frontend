@@ -1,0 +1,225 @@
+<div style="width: 100%; height: 100%;">
+
+    <div data-dojo-type="dijit/layout/BorderContainer" style="width: 100%; height: 100%;">
+
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+            <div align="center" style="width: 100%; height: 100%; padding: 5px;">
+                <label>TEpredict v.???</label>
+            </div>
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'leading'">
+            <table cellspacing="10px">
+                <tr>
+                    <td>
+                        <label>MHC class:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="checked: true, name: 'MHC class'"></div>
+                        <label>I</label>
+                        <label style="margin-left: 5px; margin-right: 5px;">or</label>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'MHC class'"></div>
+                        <label>II</label>
+                    </td>
+                    <td>
+                        <label>Select alleles:</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Select quantitative matrices:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/ComboBox" style="width: 150px;"></div>
+                    </td>
+                    <td rowspan="30">
+                        <select data-dojo-type="dijit/form/MultiSelect" style="width: 100px; height: 100%;">
+                            <option selected="selected">HLA_A_0101</option>
+                            <option>HLA_A_0201</option>
+                            <option>HLA_A_0202</option>
+                            <option>HLA_A_0203</option>
+                            <option>HLA_A_0206</option>
+                            <option>HLA_A_0301</option>
+                            <option>HLA_A_1101</option>
+                            <option>HLA_A_2301</option>
+                            <option>HLA_A_2402</option>
+                            <option>HLA_A_2403</option>
+                            <option>HLA_A_2601</option>
+                            <option>HLA_A_2902</option>
+                            <option>HLA_A_3001</option>
+                            <option>HLA_A_3002</option>
+                            <option>HLA_A_3101</option>
+                            <option>HLA_A_3301</option>
+                            <option>HLA_A_6801</option>
+                            <option>HLA_A_6802</option>
+                            <option>HLA_A_6901</option>
+                            <option>HLA_B_0702</option>
+                            <option>HLA_B_0801</option>
+                            <option>HLA_B_1501</option>
+                            <option>HLA_B_1801</option>
+                            <option>HLA_B_2705</option>
+                            <option>HLA_B_3501</option>
+                            <option>HLA_B_4001</option>
+                            <option>HLA_B_4002</option>
+                            <option>HLA_B_4402</option>
+                            <option>HLA_B_4403</option>
+                            <option>HLA_B_4501</option>
+                            <option>HLA_B_5101</option>
+                            <option>HLA_B_5301</option>
+                            <option>HLA_B_5401</option>
+                            <option>HLA_B_5701</option>
+                            <option>HLA_B_5801</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Immunoproteasome filter:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label style="margin-left: 10px;">Threshold</label>
+                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Proteasome filter:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label style="margin-left: 10px;">Threshold</label>
+                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tap filter:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label style="margin-left: 10px;">Threshold</label>
+                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tap filter type:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="checked: true, name: 'Tap filter type'"></div>
+                        <label style="margin-right: 5px;">Doytchinova</label>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'Tap filter type'"></div>
+                        <label>Peters</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tap filter method:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="checked: true, name: 'Tap filter method'"></div>
+                        <label>N-extented precursors</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <label style="margin-left: 5px; margin-right: 5px;">or</label>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'Tap filter method'"></div>
+                        <label>nonamer peptides</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Precursor length:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Precursor downweighting factor:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>BLAST filter</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label style="margin-right: 10px;">Use it</label>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label>without gaps</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Maximal identity:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Maximal positivity:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>The prediction method threshold:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+            <div data-dojo-type="dijit/form/SimpleTextarea" data-dojo-props="value: 'You may paste here your protein sequence in Fasta or GenPep format'" style="width: 99%; height: 98%; resize: none"></div>
+        </div>
+
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
+            <table cellspacing="10px">
+                <tr>
+                    <th>Output File format:</th>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="checked: true, name: 'Output File format'"></div>
+                        <label>Epitope map</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'Output File format'"></div>
+                        <label>Epitope data table</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'Output File format'"></div>
+                        <label>Summary</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label>Show all of the best scored peptides</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/CheckBox"></div>
+                        <label>Use Epitope Selector</label>
+                    </td>
+                </tr>
+            </table>
+            <div align="center" style="width: 100%; height: 100%; margin-bottom: 10px;">
+                <div data-dojo-type="dijit/form/Button" data-dojo-props="label: 'Predict!'"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
