@@ -47,69 +47,204 @@ define([
             }).then(function(data){
                 QMsD = data;
             });
+
             var currentAlleleClass;
+            var highThresholdMatricies = [
+                "TEpred",
+                "SPLS_ICA11_tuned",
+                "SPLS_ICA11",
+                "SPLS_PMBEC",
+                "SPLS_THDR",
+                "PLS_ICA11",
+                "PLS_PMBEC"
+            ];
+            var lowThresholdMatricies = [
+                "ProPred1",
+                "nHLAPred",
+                "ProPred"
+            ];
+            var defaultThresholds = [
+                "1%",
+                "2%",
+                "3%",
+                "4%",
+                "5%",
+                "6%",
+                "7%",
+                "8%",
+                "9%",
+                "10%"
+            ];
+            var defaultTextAreaMessage = "You may paste here your protein sequence in Fasta or GenPep format";
 
             // Get all necessary widgets from template
             var MHC_I_RB = dijit.byId("MHC_I_RB");
             var MHC_II_RB = dijit.byId("MHC_II_RB");
             var Matrices_Sel = dijit.byId("Matrices_Sel");
             var Alleles_MSel = dijit.byId("Alleles_MSel");
+            var Pred_thr_TB = dijit.byId("Pred_thr_TB");
+
+            var ImProt_filter_CB = dijit.byId("ImProt_filter_CB");
+            var ImProt_thr_Sel = dijit.byId("ImProt_thr_Sel");
+            var Prot_filter_CB = dijit.byId("Prot_filter_CB");
+            var Prot_thr_Sel = dijit.byId("Prot_thr_Sel");
+
+            var Tap_filter_CB = dijit.byId("Tap_filter_CB");
+            var Tap_thr_TB = dijit.byId("Tap_thr_TB");
+            var Tap_filter_type1_RB = dijit.byId("Tap_filter_type1_RB");
+            var Tap_filter_type2_RB = dijit.byId("Tap_filter_type2_RB");
+            var Tap_filter_method1_RB = dijit.byId("Tap_filter_method1_RB");
+            var Tap_filter_method2_RB = dijit.byId("Tap_filter_method2_RB");
+            var Precursor_len_TB = dijit.byId("Precursor_len_TB");
+            var Precursor_downw_TB = dijit.byId("Precursor_downw_TB");
+
+            var Seq_editor_TA = dijit.byId("Seq_editor_TA");
+            var Output_map_RB = dijit.byId("Output_map_RB");
 
             // Create actions for widgets
             dojo.connect(MHC_I_RB, "onChange", function(newValue){
                 if(newValue) {
-                    console.log("MHC_I_RB activated");
-
                     currentAlleleClass = "MHC-I";
-                    self.updateMatrixSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
+                    self.updateSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
                 }
             });
             dojo.connect(MHC_II_RB, "onChange", function(newValue){
                 if(newValue) {
-                    console.log("MHC_II_RB activated");
-
                     currentAlleleClass = "MHC-II";
-                    self.updateMatrixSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
+                    self.updateSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
                 }
             });
             dojo.connect(Matrices_Sel, "onChange", function(newValue){
-                console.log("Matrices_Sel changed to " + Matrices_Sel.get("value"));
+                self.updateMultiSelector(Alleles_MSel, QMsD[currentAlleleClass][newValue]);
 
-                self.updateAlleleList(Alleles_MSel, QMsD[currentAlleleClass][newValue]);
+                if (highThresholdMatricies.indexOf(newValue) >= 0) {
+                    Pred_thr_TB.set("value", "6.3");
+                }
+
+                if (lowThresholdMatricies.indexOf(newValue) >= 0) {
+                    Pred_thr_TB.set("value", "3.0");
+                }
+            });
+            dojo.connect(ImProt_filter_CB, "onChange", function(newValue){
+                if (newValue) {
+                    ImProt_thr_Sel.set("disabled", false);
+                } else {
+                    ImProt_thr_Sel.set("disabled", true);
+                }
+            });
+            dojo.connect(Prot_filter_CB, "onChange", function(newValue){
+                if (newValue) {
+                    Prot_thr_Sel.set("disabled", false);
+                } else {
+                    Prot_thr_Sel.set("disabled", true);
+                }
+            });
+            dojo.connect(Tap_filter_CB, "onChange", function(newValue){
+                if (newValue) {
+                    Tap_thr_TB.set("disabled", false);
+                    Tap_filter_type1_RB.set("disabled", false);
+                    Tap_filter_type2_RB.set("disabled", false);
+                    Tap_filter_method1_RB.set("disabled", false);
+                    Tap_filter_method2_RB.set("disabled", false);
+                    Precursor_len_TB.set("disabled", false);
+                    Precursor_downw_TB.set("disabled", false);
+
+                    Tap_filter_type1_RB.set("checked", false);
+                    Tap_filter_type1_RB.set("checked", true);
+                } else {
+                    Tap_thr_TB.set("disabled", true);
+                    Tap_filter_type1_RB.set("disabled", true);
+                    Tap_filter_type2_RB.set("disabled", true);
+                    Tap_filter_method1_RB.set("disabled", true);
+                    Tap_filter_method2_RB.set("disabled", true);
+                    Precursor_len_TB.set("disabled", true);
+                    Precursor_downw_TB.set("disabled", true);
+                }
+            });
+            dojo.connect(Tap_filter_type1_RB, "onChange", function(newValue){
+                if (newValue) {
+                    Tap_thr_TB.set("value", "3.0");
+                    Tap_filter_method2_RB.set("checked", false);
+                    Tap_filter_method2_RB.set("checked", true);
+                    Tap_filter_method1_RB.set("disabled", true);
+                }
+            });
+            dojo.connect(Tap_filter_type2_RB, "onChange", function(newValue){
+                if (newValue) {
+                    Tap_thr_TB.set("value", "1.0");
+                    Tap_filter_method1_RB.set("disabled", false);
+                }
+            });
+            dojo.connect(Tap_filter_method1_RB, "onChange", function(newValue){
+                if (newValue) {
+                    Precursor_len_TB.set("disabled", false);
+                    Precursor_downw_TB.set("disabled", false);
+                }
+            });
+            dojo.connect(Tap_filter_method2_RB, "onChange", function(newValue){
+                if (newValue) {
+                    Precursor_len_TB.set("disabled", true);
+                    Precursor_downw_TB.set("disabled", true);
+                }
+            });
+            dojo.connect(Seq_editor_TA, "onFocus", function(){
+                if (Seq_editor_TA.get("value") == defaultTextAreaMessage) {
+                    Seq_editor_TA.set("value", "");
+                }
+            });
+            dojo.connect(Seq_editor_TA, "onBlur", function(){
+                if (Seq_editor_TA.get("value") == "") {
+                    Seq_editor_TA.set("value", defaultTextAreaMessage);
+                }
             });
 
             // Set default values for widgets
             MHC_I_RB.set("checked", true);
+
+            ImProt_filter_CB.set("checked", true);
+            ImProt_filter_CB.set("checked", false);
+            this.updateSelector(ImProt_thr_Sel, defaultThresholds);
+            Prot_filter_CB.set("checked", true);
+            Prot_filter_CB.set("checked", false);
+            this.updateSelector(Prot_thr_Sel, defaultThresholds);
+
+            Precursor_len_TB.set("value", "10");
+            Precursor_downw_TB.set("value", "0.2");
+            Tap_filter_CB.set("checked", true);
+            Tap_filter_CB.set("checked", false);
+
+            Seq_editor_TA.set("value", defaultTextAreaMessage);
+            Output_map_RB.set("checked", true);
         },
 
-        updateMatrixSelector: function(matrixSelector, newValues) {
-            while (matrixSelector.options.length > 0) {
-                matrixSelector.removeOption(0);
+        updateSelector: function(selector, newValues) {
+            while (selector.options.length > 0) {
+                selector.removeOption(0);
             }
 
             newValues.forEach(function(value) {
-                matrixSelector.addOption({
+                selector.addOption({
                     label: value,
                     value: value
                 })
             });
 
-            matrixSelector.set("value", newValues[0]);
+            selector.set("value", newValues[0]);
         },
 
-        updateAlleleList: function(MSelList, newValues) {
+        updateMultiSelector: function(MultiSelector, newValues) {
             var self = this;
-            var MSel = self.dojoDom.byId(MSelList.get("id"));
+            var MultiSelectorNode = self.dojoDom.byId(MultiSelector.get("id"));
 
-            while (MSel.children.length > 0) {
-                MSel.remove(MSel.children[0]);
+            while (MultiSelectorNode.children.length > 0) {
+                MultiSelectorNode.remove(MultiSelectorNode.children[0]);
             }
 
             newValues.forEach(function(value) {
                 var option = self.dojoWin.doc.createElement("option");
                 option.innerHTML = value;
                 option.value = value;
-                MSel.appendChild(option);
+                MultiSelectorNode.appendChild(option);
             });
         },
 
