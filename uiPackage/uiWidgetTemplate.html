@@ -15,10 +15,16 @@
                         <label>MHC class:</label>
                     </td>
                     <td>
-                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="checked: true, name: 'MHC class'"></div>
+                        <div id="MHC_I_RB"
+                             data-dojo-type="dijit/form/RadioButton"
+                             data-dojo-props="name: 'MHC class'"></div>
                         <label>I</label>
+
                         <label style="margin-left: 5px; margin-right: 5px;">or</label>
-                        <div data-dojo-type="dijit/form/RadioButton" data-dojo-props="name: 'MHC class'"></div>
+
+                        <div id="MHC_II_RB"
+                             data-dojo-type="dijit/form/RadioButton"
+                             data-dojo-props="name: 'MHC class'"></div>
                         <label>II</label>
                     </td>
                     <td>
@@ -30,46 +36,15 @@
                         <label>Select quantitative matrices:</label>
                     </td>
                     <td>
-                        <div data-dojo-type="dijit/form/ComboBox" style="width: 150px;"></div>
+                        <div id="Matrices_Sel"
+                             data-dojo-type="dijit/form/Select"
+                             style="width: 150px;"></div>
                     </td>
                     <td rowspan="30">
-                        <select data-dojo-type="dijit/form/MultiSelect" style="width: 100px; height: 100%;">
-                            <option selected="selected">HLA_A_0101</option>
-                            <option>HLA_A_0201</option>
-                            <option>HLA_A_0202</option>
-                            <option>HLA_A_0203</option>
-                            <option>HLA_A_0206</option>
-                            <option>HLA_A_0301</option>
-                            <option>HLA_A_1101</option>
-                            <option>HLA_A_2301</option>
-                            <option>HLA_A_2402</option>
-                            <option>HLA_A_2403</option>
-                            <option>HLA_A_2601</option>
-                            <option>HLA_A_2902</option>
-                            <option>HLA_A_3001</option>
-                            <option>HLA_A_3002</option>
-                            <option>HLA_A_3101</option>
-                            <option>HLA_A_3301</option>
-                            <option>HLA_A_6801</option>
-                            <option>HLA_A_6802</option>
-                            <option>HLA_A_6901</option>
-                            <option>HLA_B_0702</option>
-                            <option>HLA_B_0801</option>
-                            <option>HLA_B_1501</option>
-                            <option>HLA_B_1801</option>
-                            <option>HLA_B_2705</option>
-                            <option>HLA_B_3501</option>
-                            <option>HLA_B_4001</option>
-                            <option>HLA_B_4002</option>
-                            <option>HLA_B_4402</option>
-                            <option>HLA_B_4403</option>
-                            <option>HLA_B_4501</option>
-                            <option>HLA_B_5101</option>
-                            <option>HLA_B_5301</option>
-                            <option>HLA_B_5401</option>
-                            <option>HLA_B_5701</option>
-                            <option>HLA_B_5801</option>
-                        </select>
+                        <div id="Alleles_MSel"
+                             data-dojo-type="dijit/form/MultiSelect"
+                             style="width: 100px; height: 100%;">
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +54,7 @@
                     <td>
                         <div data-dojo-type="dijit/form/CheckBox"></div>
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                        <div data-dojo-type="dijit/form/Select" style="width: 70px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +64,7 @@
                     <td>
                         <div data-dojo-type="dijit/form/CheckBox"></div>
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                        <div data-dojo-type="dijit/form/Select" style="width: 70px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -99,7 +74,7 @@
                     <td>
                         <div data-dojo-type="dijit/form/CheckBox"></div>
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div data-dojo-type="dijit/form/ComboBox" style="width: 70px;"></div>
+                        <div data-dojo-type="dijit/form/Select" style="width: 70px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -160,7 +135,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Maximal identity:</label>
+                        <label>BLAST maximal identity:</label>
                     </td>
                     <td>
                         <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
@@ -168,7 +143,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Maximal positivity:</label>
+                        <label>BLAST maximal positivity:</label>
                     </td>
                     <td>
                         <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
@@ -190,7 +165,7 @@
         </div>
 
         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
-            <table cellspacing="10px">
+            <table align="center" cellspacing="10px">
                 <tr>
                     <th>Output File format:</th>
                     <td>
@@ -208,10 +183,6 @@
                     <td>
                         <div data-dojo-type="dijit/form/CheckBox"></div>
                         <label>Show all of the best scored peptides</label>
-                    </td>
-                    <td>
-                        <div data-dojo-type="dijit/form/CheckBox"></div>
-                        <label>Use Epitope Selector</label>
                     </td>
                 </tr>
             </table>
