@@ -4,7 +4,7 @@
 
         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
             <div align="center" style="width: 100%; height: 100%; padding: 5px;">
-                <label>TEpredict v.???</label>
+                <label>TEpredict v?.?.?</label>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                     <td>
                         <div id="Matrices_Sel"
                              data-dojo-type="dijit/form/Select"
-                             style="width: 150px;"></div>
+                             style="width: 170px;"></div>
                     </td>
                     <td rowspan="30">
                         <div id="Alleles_MSel"
@@ -46,6 +46,18 @@
                              style="width: 100px; height: 100%;">
                         </div>
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>The prediction method threshold:</label>
+                    </td>
+                    <td>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 70px;"></div>
+                    </td>
+                </tr>
+                <tr style="background-color: #E1EBFB; height: 3px;">
+                    <td colspan="2"></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>
@@ -67,6 +79,10 @@
                         <div data-dojo-type="dijit/form/Select" style="width: 70px;"></div>
                     </td>
                 </tr>
+                <tr style="background-color: #E1EBFB; height: 3px;">
+                    <td colspan="2"></td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>
                         <label>Tap filter:</label>
@@ -74,7 +90,7 @@
                     <td>
                         <div data-dojo-type="dijit/form/CheckBox"></div>
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div data-dojo-type="dijit/form/Select" style="width: 70px;"></div>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 70px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -111,7 +127,7 @@
                         <label>Precursor length:</label>
                     </td>
                     <td>
-                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 70px;"></div>
                     </td>
                 </tr>
                 <tr>
@@ -119,49 +135,14 @@
                         <label>Precursor downweighting factor:</label>
                     </td>
                     <td>
-                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>BLAST filter</label>
-                    </td>
-                    <td>
-                        <div data-dojo-type="dijit/form/CheckBox"></div>
-                        <label style="margin-right: 10px;">Use it</label>
-                        <div data-dojo-type="dijit/form/CheckBox"></div>
-                        <label>without gaps</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>BLAST maximal identity:</label>
-                    </td>
-                    <td>
-                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>BLAST maximal positivity:</label>
-                    </td>
-                    <td>
-                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>The prediction method threshold:</label>
-                    </td>
-                    <td>
-                        <div data-dojo-type="dijit/form/TextBox" style="width: 50px"></div>
+                        <div data-dojo-type="dijit/form/TextBox" style="width: 70px;"></div>
                     </td>
                 </tr>
             </table>
         </div>
 
         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
-            <div data-dojo-type="dijit/form/SimpleTextarea" data-dojo-props="value: 'You may paste here your protein sequence in Fasta or GenPep format'" style="width: 99%; height: 98%; resize: none"></div>
+            <div data-dojo-type="dijit/form/SimpleTextarea" data-dojo-props="value: 'You may paste here your protein sequence in Fasta or GenPep format'" style="width: 99%; height: 98%; resize: none;"></div>
         </div>
 
         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
