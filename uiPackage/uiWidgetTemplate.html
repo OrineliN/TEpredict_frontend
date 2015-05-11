@@ -15,14 +15,14 @@
                         <label>MHC class:</label>
                     </td>
                     <td>
-                        <div id="MHC_I_RB"
+                        <div data-dojo-attach-point="MHC1"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'MHC class'"></div>
                         <label>I</label>
 
                         <label style="margin-left: 5px; margin-right: 5px;">or</label>
 
-                        <div id="MHC_II_RB"
+                        <div data-dojo-attach-point="MHC2"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'MHC class'"></div>
                         <label>II</label>
@@ -36,12 +36,13 @@
                         <label>Select quantitative matrices:</label>
                     </td>
                     <td>
-                        <div id="Matrices_Sel"
+                        <div data-dojo-attach-point="Matrices"
                              data-dojo-type="dijit/form/Select"
                              style="width: 170px;"></div>
                     </td>
                     <td rowspan="30">
-                        <div id="Alleles_MSel"
+                        <div id="Alleles"
+                             data-dojo-attach-point="Alleles"
                              data-dojo-type="dijit/form/MultiSelect"
                              style="width: 100px; height: 100%;">
                         </div>
@@ -52,7 +53,7 @@
                         <label>The prediction method threshold:</label>
                     </td>
                     <td>
-                        <div id="Pred_thr_TB"
+                        <div data-dojo-attach-point="PredictThreshold"
                              data-dojo-type="dijit/form/TextBox"
                              style="width: 70px;"></div>
                     </td>
@@ -65,11 +66,11 @@
                         <label>Immunoproteasome filter:</label>
                     </td>
                     <td>
-                        <div id="ImProt_filter_CB"
+                        <div data-dojo-attach-point="ImProtFilter"
                              data-dojo-type="dijit/form/CheckBox"></div>
 
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div id="ImProt_thr_Sel"
+                        <div data-dojo-attach-point="ImProtThreshold"
                              data-dojo-type="dijit/form/Select"
                              style="width: 70px;"></div>
                     </td>
@@ -79,11 +80,11 @@
                         <label>Proteasome filter:</label>
                     </td>
                     <td>
-                        <div id="Prot_filter_CB"
+                        <div data-dojo-attach-point="ProtFilter"
                              data-dojo-type="dijit/form/CheckBox"></div>
 
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div id="Prot_thr_Sel"
+                        <div data-dojo-attach-point="ProtThreshold"
                              data-dojo-type="dijit/form/Select"
                              style="width: 70px;"></div>
                     </td>
@@ -96,11 +97,11 @@
                         <label>Tap filter:</label>
                     </td>
                     <td>
-                        <div id="Tap_filter_CB"
+                        <div data-dojo-attach-point="TapFilter"
                              data-dojo-type="dijit/form/CheckBox"></div>
 
                         <label style="margin-left: 10px;">Threshold</label>
-                        <div id="Tap_thr_TB"
+                        <div data-dojo-attach-point="TapThreshold"
                              data-dojo-type="dijit/form/TextBox"
                              style="width: 70px;"></div>
                     </td>
@@ -110,12 +111,12 @@
                         <label>Tap filter type:</label>
                     </td>
                     <td>
-                        <div id="Tap_filter_type1_RB"
+                        <div data-dojo-attach-point="TapFilterType1"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Tap filter type'"></div>
                         <label style="margin-right: 5px;">Doytchinova</label>
 
-                        <div id="Tap_filter_type2_RB"
+                        <div data-dojo-attach-point="TapFilterType2"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Tap filter type'"></div>
                         <label>Peters</label>
@@ -126,7 +127,7 @@
                         <label>Tap filter method:</label>
                     </td>
                     <td>
-                        <div id="Tap_filter_method1_RB"
+                        <div data-dojo-attach-point="TapFilterMethod1"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Tap filter method'"></div>
                         <label>N-extented precursors</label>
@@ -137,7 +138,7 @@
                     </td>
                     <td>
                         <label style="margin-left: 5px; margin-right: 5px;">or</label>
-                        <div id="Tap_filter_method2_RB"
+                        <div data-dojo-attach-point="TapFilterMethod2"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Tap filter method'"></div>
                         <label>nonamer peptides</label>
@@ -148,7 +149,7 @@
                         <label>Precursor length:</label>
                     </td>
                     <td>
-                        <div id="Precursor_len_TB"
+                        <div data-dojo-attach-point="PrecursorLength"
                              data-dojo-type="dijit/form/TextBox"
                              style="width: 70px;"></div>
                     </td>
@@ -158,7 +159,7 @@
                         <label>Precursor downweighting factor:</label>
                     </td>
                     <td>
-                        <div id="Precursor_downw_TB"
+                        <div data-dojo-attach-point="PrecursorDownW"
                              data-dojo-type="dijit/form/TextBox"
                              style="width: 70px;"></div>
                     </td>
@@ -167,7 +168,7 @@
         </div>
 
         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
-            <div id="Seq_editor_TA"
+            <div data-dojo-attach-point="SequenceEditor"
                  data-dojo-type="dijit/form/SimpleTextarea"
                  style="width: 99%; height: 98%; resize: none;"></div>
         </div>
@@ -177,32 +178,32 @@
                 <tr>
                     <th>Output File format:</th>
                     <td>
-                        <div id="Output_map_RB"
+                        <div data-dojo-attach-point="OutputMap"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Output File format'"></div>
                         <label>Epitope map</label>
                     </td>
                     <td>
-                        <div id="Output_table_RB"
+                        <div data-dojo-attach-point="OutputTable"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Output File format'"></div>
                         <label>Epitope data table</label>
                     </td>
                     <td>
-                        <div id="Output_summary_RB"
+                        <div data-dojo-attach-point="OutputSummary"
                              data-dojo-type="dijit/form/RadioButton"
                              data-dojo-props="name: 'Output File format'"></div>
                         <label>Summary</label>
                     </td>
                     <td>
-                        <div id="Output_showall_CB"
+                        <div data-dojo-attach-point="OutputShowAll"
                              data-dojo-type="dijit/form/CheckBox"></div>
                         <label>Show all of the best scored peptides</label>
                     </td>
                 </tr>
             </table>
             <div align="center" style="width: 100%; height: 100%; margin-bottom: 10px;">
-                <div id=""
+                <div data-dojo-attach-point="PredictButton"
                      data-dojo-type="dijit/form/Button"
                      data-dojo-props="label: 'Predict!'"></div>
             </div>

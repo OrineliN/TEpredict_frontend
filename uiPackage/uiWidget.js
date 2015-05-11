@@ -77,144 +77,131 @@ define([
             ];
             var defaultTextAreaMessage = "You may paste here your protein sequence in Fasta or GenPep format";
 
-            // Get all necessary widgets from template
-            var MHC_I_RB = dijit.byId("MHC_I_RB");
-            var MHC_II_RB = dijit.byId("MHC_II_RB");
-            var Matrices_Sel = dijit.byId("Matrices_Sel");
-            var Alleles_MSel = dijit.byId("Alleles_MSel");
-            var Pred_thr_TB = dijit.byId("Pred_thr_TB");
-
-            var ImProt_filter_CB = dijit.byId("ImProt_filter_CB");
-            var ImProt_thr_Sel = dijit.byId("ImProt_thr_Sel");
-            var Prot_filter_CB = dijit.byId("Prot_filter_CB");
-            var Prot_thr_Sel = dijit.byId("Prot_thr_Sel");
-
-            var Tap_filter_CB = dijit.byId("Tap_filter_CB");
-            var Tap_thr_TB = dijit.byId("Tap_thr_TB");
-            var Tap_filter_type1_RB = dijit.byId("Tap_filter_type1_RB");
-            var Tap_filter_type2_RB = dijit.byId("Tap_filter_type2_RB");
-            var Tap_filter_method1_RB = dijit.byId("Tap_filter_method1_RB");
-            var Tap_filter_method2_RB = dijit.byId("Tap_filter_method2_RB");
-            var Precursor_len_TB = dijit.byId("Precursor_len_TB");
-            var Precursor_downw_TB = dijit.byId("Precursor_downw_TB");
-
-            var Seq_editor_TA = dijit.byId("Seq_editor_TA");
-            var Output_map_RB = dijit.byId("Output_map_RB");
-
             // Create actions for widgets
-            dojo.connect(MHC_I_RB, "onChange", function(newValue){
+            dojo.connect(this.MHC1, "onChange", function(newValue){
                 if(newValue) {
                     currentAlleleClass = "MHC-I";
-                    self.updateSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
+                    self.updateSelector(self.Matrices, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
                 }
             });
-            dojo.connect(MHC_II_RB, "onChange", function(newValue){
+
+            dojo.connect(this.MHC2, "onChange", function(newValue){
                 if(newValue) {
                     currentAlleleClass = "MHC-II";
-                    self.updateSelector(Matrices_Sel, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
+                    self.updateSelector(self.Matrices, Object.getOwnPropertyNames(QMsD[currentAlleleClass]));
                 }
             });
-            dojo.connect(Matrices_Sel, "onChange", function(newValue){
-                self.updateMultiSelector(Alleles_MSel, QMsD[currentAlleleClass][newValue]);
+
+            dojo.connect(this.Matrices, "onChange", function(newValue){
+                self.updateMultiSelector(self.Alleles, QMsD[currentAlleleClass][newValue]);
 
                 if (highThresholdMatricies.indexOf(newValue) >= 0) {
-                    Pred_thr_TB.set("value", "6.3");
+                    self.PredictThreshold.set("value", "6.3");
                 }
 
                 if (lowThresholdMatricies.indexOf(newValue) >= 0) {
-                    Pred_thr_TB.set("value", "3.0");
+                    self.PredictThreshold.set("value", "3.0");
                 }
             });
-            dojo.connect(ImProt_filter_CB, "onChange", function(newValue){
-                if (newValue) {
-                    ImProt_thr_Sel.set("disabled", false);
-                } else {
-                    ImProt_thr_Sel.set("disabled", true);
-                }
-            });
-            dojo.connect(Prot_filter_CB, "onChange", function(newValue){
-                if (newValue) {
-                    Prot_thr_Sel.set("disabled", false);
-                } else {
-                    Prot_thr_Sel.set("disabled", true);
-                }
-            });
-            dojo.connect(Tap_filter_CB, "onChange", function(newValue){
-                if (newValue) {
-                    Tap_thr_TB.set("disabled", false);
-                    Tap_filter_type1_RB.set("disabled", false);
-                    Tap_filter_type2_RB.set("disabled", false);
-                    Tap_filter_method1_RB.set("disabled", false);
-                    Tap_filter_method2_RB.set("disabled", false);
-                    Precursor_len_TB.set("disabled", false);
-                    Precursor_downw_TB.set("disabled", false);
 
-                    Tap_filter_type1_RB.set("checked", false);
-                    Tap_filter_type1_RB.set("checked", true);
+            dojo.connect(this.ImProtFilter, "onChange", function(newValue){
+                if (newValue) {
+                    self.ImProtThreshold.set("disabled", false);
                 } else {
-                    Tap_thr_TB.set("disabled", true);
-                    Tap_filter_type1_RB.set("disabled", true);
-                    Tap_filter_type2_RB.set("disabled", true);
-                    Tap_filter_method1_RB.set("disabled", true);
-                    Tap_filter_method2_RB.set("disabled", true);
-                    Precursor_len_TB.set("disabled", true);
-                    Precursor_downw_TB.set("disabled", true);
+                    self.ImProtThreshold.set("disabled", true);
                 }
             });
-            dojo.connect(Tap_filter_type1_RB, "onChange", function(newValue){
+
+            dojo.connect(this.ProtFilter, "onChange", function(newValue){
                 if (newValue) {
-                    Tap_thr_TB.set("value", "3.0");
-                    Tap_filter_method2_RB.set("checked", false);
-                    Tap_filter_method2_RB.set("checked", true);
-                    Tap_filter_method1_RB.set("disabled", true);
+                    self.ProtThreshold.set("disabled", false);
+                } else {
+                    self.ProtThreshold.set("disabled", true);
                 }
             });
-            dojo.connect(Tap_filter_type2_RB, "onChange", function(newValue){
+
+            dojo.connect(this.TapFilter, "onChange", function(newValue){
                 if (newValue) {
-                    Tap_thr_TB.set("value", "1.0");
-                    Tap_filter_method1_RB.set("disabled", false);
+                    self.TapThreshold.set("disabled", false);
+                    self.TapFilterType1.set("disabled", false);
+                    self.TapFilterType2.set("disabled", false);
+                    self.TapFilterMethod1.set("disabled", false);
+                    self.TapFilterMethod2.set("disabled", false);
+                    self.PrecursorLength.set("disabled", false);
+                    self.PrecursorDownW.set("disabled", false);
+
+                    self.TapFilterType1.set("checked", false);
+                    self.TapFilterType1.set("checked", true);
+                } else {
+                    self.TapThreshold.set("disabled", true);
+                    self.TapFilterType1.set("disabled", true);
+                    self.TapFilterType2.set("disabled", true);
+                    self.TapFilterMethod1.set("disabled", true);
+                    self.TapFilterMethod2.set("disabled", true);
+                    self.PrecursorLength.set("disabled", true);
+                    self.PrecursorDownW.set("disabled", true);
                 }
             });
-            dojo.connect(Tap_filter_method1_RB, "onChange", function(newValue){
+
+            dojo.connect(this.TapFilterType1, "onChange", function(newValue){
                 if (newValue) {
-                    Precursor_len_TB.set("disabled", false);
-                    Precursor_downw_TB.set("disabled", false);
+                    self.TapThreshold.set("value", "3.0");
+                    self.TapFilterMethod2.set("checked", false);
+                    self.TapFilterMethod2.set("checked", true);
+                    self.TapFilterMethod1.set("disabled", true);
                 }
             });
-            dojo.connect(Tap_filter_method2_RB, "onChange", function(newValue){
+
+            dojo.connect(this.TapFilterType2, "onChange", function(newValue){
                 if (newValue) {
-                    Precursor_len_TB.set("disabled", true);
-                    Precursor_downw_TB.set("disabled", true);
+                    self.TapThreshold.set("value", "1.0");
+                    self.TapFilterMethod1.set("disabled", false);
                 }
             });
-            dojo.connect(Seq_editor_TA, "onFocus", function(){
-                if (Seq_editor_TA.get("value") == defaultTextAreaMessage) {
-                    Seq_editor_TA.set("value", "");
+
+            dojo.connect(this.TapFilterMethod1, "onChange", function(newValue){
+                if (newValue) {
+                    self.PrecursorLength.set("disabled", false);
+                    self.PrecursorDownW.set("disabled", false);
                 }
             });
-            dojo.connect(Seq_editor_TA, "onBlur", function(){
-                if (Seq_editor_TA.get("value") == "") {
-                    Seq_editor_TA.set("value", defaultTextAreaMessage);
+
+            dojo.connect(this.TapFilterMethod2, "onChange", function(newValue){
+                if (newValue) {
+                    self.PrecursorLength.set("disabled", true);
+                    self.PrecursorDownW.set("disabled", true);
+                }
+            });
+
+            dojo.connect(this.SequenceEditor, "onFocus", function(){
+                if (self.SequenceEditor.get("value") == defaultTextAreaMessage) {
+                    self.SequenceEditor.set("value", "");
+                }
+            });
+
+            dojo.connect(this.SequenceEditor, "onBlur", function(){
+                if (self.SequenceEditor.get("value") == "") {
+                    self.SequenceEditor.set("value", defaultTextAreaMessage);
                 }
             });
 
             // Set default values for widgets
-            MHC_I_RB.set("checked", true);
+            this.MHC1.set("checked", true);
 
-            ImProt_filter_CB.set("checked", true);
-            ImProt_filter_CB.set("checked", false);
-            this.updateSelector(ImProt_thr_Sel, defaultThresholds);
-            Prot_filter_CB.set("checked", true);
-            Prot_filter_CB.set("checked", false);
-            this.updateSelector(Prot_thr_Sel, defaultThresholds);
+            this.ImProtFilter.set("checked", true);
+            this.ImProtFilter.set("checked", false);
+            this.updateSelector(this.ImProtThreshold, defaultThresholds);
+            this.ProtFilter.set("checked", true);
+            this.ProtFilter.set("checked", false);
+            this.updateSelector(this.ProtThreshold, defaultThresholds);
 
-            Precursor_len_TB.set("value", "10");
-            Precursor_downw_TB.set("value", "0.2");
-            Tap_filter_CB.set("checked", true);
-            Tap_filter_CB.set("checked", false);
+            this.PrecursorLength.set("value", "10");
+            this.PrecursorDownW.set("value", "0.2");
+            this.TapFilter.set("checked", true);
+            this.TapFilter.set("checked", false);
 
-            Seq_editor_TA.set("value", defaultTextAreaMessage);
-            Output_map_RB.set("checked", true);
+            this.SequenceEditor.set("value", defaultTextAreaMessage);
+            this.OutputMap.set("checked", true);
         },
 
         updateSelector: function(selector, newValues) {
@@ -249,7 +236,7 @@ define([
         },
 
         validateInput: function() {
-
+            return true;
         }
     })
 });
