@@ -185,6 +185,10 @@ define([
                 }
             });
 
+            dojo.connect(this.PredictButton, "onClick", function() {
+                self.startPrediction();
+            });
+
             // Set default values for widgets
             this.MHC1.set("checked", true);
 
@@ -232,6 +236,17 @@ define([
                 option.innerHTML = value;
                 option.value = value;
                 MultiSelectorNode.appendChild(option);
+            });
+        },
+
+        startPrediction: function() {
+            xhr.post('http://0.0.0.0:8080/olo', {
+                data: "OLOLO123",
+                headers: {
+                    'X-Requested-With': null
+                }
+            }).then(function(data) {
+                debugger;
             });
         },
 
